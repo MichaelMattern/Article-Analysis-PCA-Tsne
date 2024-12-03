@@ -14,7 +14,7 @@ import plotly.express as px
 st.title('PCA and t-SNE Visualization')
 
 # Sidebar for parameter inputs
-st.sidebar.header('Parameters')
+st.sidebar.header('Hyperparameters')
 
 # File uploader for the dataset
 uploaded_file = st.sidebar.file_uploader("Upload your CSV file", type="csv")
