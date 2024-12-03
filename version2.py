@@ -53,7 +53,7 @@ if uploaded_file is not None:
 
     # Slider for selecting the number of clusters
     num_clusters = st.sidebar.slider(
-        'Number of Clusters for Coloring', min_value=2, max_value=10, value=3, step=1
+        'Number of Clusters for Coloring', min_value=2, max_value=50, value=3, step=1
     )
 
     @st.cache_data
