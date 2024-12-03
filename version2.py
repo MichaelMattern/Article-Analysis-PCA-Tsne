@@ -59,7 +59,8 @@ if uploaded_file is not None:
     @st.cache_data
     def preprocess_data(df, num_samples, required_columns):
         # Randomly sample the data
-        x = df.sample(n=num_samples, random_state=42)[required_columns].values
+        #x = df.sample(n=num_samples, random_state=42)[required_columns].values
+        x = df.loc[0:num_samples - 1, required_columns].values
         # Impute missing values
         imputer = SimpleImputer(strategy='mean')
         x = imputer.fit_transform(x)
