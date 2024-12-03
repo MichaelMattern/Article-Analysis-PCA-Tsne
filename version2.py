@@ -95,7 +95,7 @@ if uploaded_file is not None:
 
     def compute_tsne(data, perplexity):
         tsne = TSNE(n_components=2, perplexity=perplexity, random_state=42)
-        return tsne.fit_transform(principalDf)
+        return tsne.fit_transform(data)
     
     # Compute t-SNE on the PCA-reduced data
     data_2d = compute_tsne(principal_components, perplexity)
