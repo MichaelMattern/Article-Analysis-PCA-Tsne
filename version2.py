@@ -144,7 +144,7 @@ if uploaded_file is not None:
         xaxis_title='t-SNE Dimension 1',
         yaxis_title='t-SNE Dimension 2',
         title_font_size=20,
-        hoverlabel=dict(font=dict(size=18))  
+        hoverlabel=dict(font=dict(size=18)),
         coloraxis_colorbar=dict(
             title='Cluster Label'
         )
