@@ -132,27 +132,25 @@ if uploaded_file is not None:
     st.markdown(href, unsafe_allow_html=True)
 
     fig = px.scatter(
-    tsne_df,
-    x='tsne_dimension_1',
-    y='tsne_dimension_2',
-    color='Cluster',
-    hover_data=['Headlines'],  # Include 'Headlines' for hover information
-    title='2D t-SNE Visualization with Clustering'
-)
-
-# Customize axis labels, title, and colorbar
-fig.update_layout(
-    xaxis_title='t-SNE Dimension 1',
-    yaxis_title='t-SNE Dimension 2',
-    title_font_size=20,
-    coloraxis_colorbar=dict(
-        title='Cluster Label'
+        tsne_df,
+        x='tsne_dimension_1',
+        y='tsne_dimension_2',
+        color='Cluster',
+        hover_data=['Headlines'],  # Include 'Headlines' for hover information
+        title='2D t-SNE Visualization with Clustering'
     )
-)
-
-# Display the figure in Streamlit
-st.plotly_chart(fig)
-
+    # Customize axis labels, title, and colorbar
+    fig.update_layout(
+        xaxis_title='t-SNE Dimension 1',
+        yaxis_title='t-SNE Dimension 2',
+        title_font_size=20,
+        coloraxis_colorbar=dict(
+            title='Cluster Label'
+        )
+    )
+    
+    # Display the figure in Streamlit
+    st.plotly_chart(fig)
 else:
     st.warning("Please upload a CSV file.")
     st.stop()
