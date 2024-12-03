@@ -137,7 +137,8 @@ if uploaded_file is not None:
         y='tsne_dimension_2',
         color='Cluster',
         hover_data=['Headlines'],  # Include 'Headlines' for hover information
-        title='2D t-SNE Visualization with Clustering'
+        title='2D t-SNE Visualization with Clustering',
+        fontsize=20
     )
     # Customize axis labels, title, and colorbar
     fig.update_layout(
