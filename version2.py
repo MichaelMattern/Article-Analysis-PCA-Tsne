@@ -6,7 +6,8 @@ from sklearn.decomposition import PCA
 from sklearn.impute import SimpleImputer
 from sklearn.cluster import KMeans
 import base64
-from openTSNE import TSNE 
+from openTSNE import TSNE
+import plotly.express as px
 
 # Set the title of the app
 st.title('PCA and t-SNE Visualization')
@@ -68,6 +69,9 @@ if uploaded_file is not None:
 
     x = preprocess_data(df, num_samples, required_columns)
 
+    headlines = df.loc[0:num_samples - 1, 'Headlines'].values
+
+
     @st.cache_data
     def compute_pca(x, pca_dimensions):
         pca = PCA(n_components=pca_dimensions)
@@ -116,6 +120,7 @@ if uploaded_file is not None:
         data_2d, columns=['tsne_dimension_1', 'tsne_dimension_2']
     )
     tsne_df['Cluster'] = labels
+    tsne_df['Headlines'] = headlines
 
     # Download link for the t-SNE output
     csv = tsne_df.to_csv(index=False)
@@ -125,6 +130,28 @@ if uploaded_file is not None:
         'Download t-SNE CSV File with Clusters</a>'
     )
     st.markdown(href, unsafe_allow_html=True)
+
+    fig = px.scatter(
+    tsne_df,
+    x='tsne_dimension_1',
+    y='tsne_dimension_2',
+    color='Cluster',
+    hover_data=['Headlines'],  # Include 'Headlines' for hover information
+    title='2D t-SNE Visualization with Clustering'
+)
+
+# Customize axis labels, title, and colorbar
+fig.update_layout(
+    xaxis_title='t-SNE Dimension 1',
+    yaxis_title='t-SNE Dimension 2',
+    title_font_size=20,
+    coloraxis_colorbar=dict(
+        title='Cluster Label'
+    )
+)
+
+# Display the figure in Streamlit
+st.plotly_chart(fig)
 
 else:
     st.warning("Please upload a CSV file.")
