@@ -164,16 +164,6 @@ if uploaded_file is not None:
     sil_score = silhouette_score(data_2d, labels)
     st.write(f'Silhouette Score: {sil_score:.3f}')
 
-    # Step 3: Calculate the WCSS (Within-Cluster Sum of Squares)
-    wcss = 0
-    for i in range(kmeans.n_clusters):
-        cluster_points = data_2d[kmeans.labels_ == i]  # Get points belonging to cluster i
-        centroid = kmeans.cluster_centers_[i]  # Get the centroid of cluster i
-        # Sum of squared distances between each point and the centroid
-        wcss += np.sum(np.linalg.norm(cluster_points - centroid, axis=1) ** 2)
-
-    st.write(f"WCSS (Within-Cluster Sum of Squares): {wcss:.3f}")
-
 else:
     st.warning("Please upload a CSV file.")
     st.stop()
