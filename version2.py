@@ -4,6 +4,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.decomposition import PCA
 from sklearn.impute import SimpleImputer
+from sklearn.metrics import silhouette_score
 from sklearn.cluster import KMeans
 import base64
 #from openTSNE import TSNE
@@ -158,6 +159,11 @@ if uploaded_file is not None:
     
     # Display the figure in Streamlit
     st.plotly_chart(fig)
+
+    # Compute and display silhouette_score
+    sil_score = silhouette_score(data_2d, labels)
+    st.write(f'Silhouette Score: {sil_score:.3f}')
+
 else:
     st.warning("Please upload a CSV file.")
     st.stop()
