@@ -88,6 +88,10 @@ Modifications required to Streamlit App files:
     - Copy requirements.txt from /streamlit directory over to new deployment
     - Copy version2.py from /streamlit directory over to new deployment
     - Install / resolve any dependency issues
+        When editing through CodeSpaces, access the terminal window and run the following:
+            pip install matplotlib
+            pip install scikit-learn
+            pip install plotly
 
 Run program
 
