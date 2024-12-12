@@ -21,6 +21,8 @@ st.sidebar.header('Hyperparameters')
 uploaded_file = st.sidebar.file_uploader("Upload your CSV file", type="csv")
 
 if uploaded_file is not None:
+
+    # Load data
     @st.cache_data
     def load_data(file):
         return pd.read_csv(file)
@@ -58,6 +60,7 @@ if uploaded_file is not None:
         'Number of Clusters for Coloring', min_value=2, max_value=100, value=3, step=1
     )
 
+    # Preprocess data
     @st.cache_data
     def preprocess_data(df, num_samples, required_columns):
         # Randomly sample the data
@@ -74,15 +77,17 @@ if uploaded_file is not None:
 
     headlines = df.loc[0:num_samples - 1, 'Headlines'].values
 
-
+    # Define PCA function
     @st.cache_data
     def compute_pca(x, pca_dimensions):
         pca = PCA(n_components=pca_dimensions)
         principal_components = pca.fit_transform(x)
         return principal_components
 
+    # Apply PCA model
     principal_components = compute_pca(x, pca_dimensions)
 
+    # Define t-SNE function
     @st.cache_data
     def compute_tsne(data, perplexity):
         tsne = TSNE(n_components=2, perplexity=perplexity, random_state=42)
@@ -95,7 +100,7 @@ if uploaded_file is not None:
     kmeans = KMeans(n_clusters=num_clusters, n_init=10, random_state=42)
     labels = kmeans.fit_predict(data_2d)
 
-    # Plotting
+    # Plotting using pyplot
     fig, ax = plt.subplots(figsize=(8, 8))
     scatter = ax.scatter(
         data_2d[:, 0],
@@ -128,6 +133,7 @@ if uploaded_file is not None:
     )
     st.markdown(href, unsafe_allow_html=True)
 
+    # Plotting using plotly
     fig = px.scatter(
         tsne_df,
         x='tsne_dimension_1',
@@ -136,6 +142,7 @@ if uploaded_file is not None:
         hover_data=['Headlines'],  # Include 'Headlines' for hover information
         title='2D t-SNE Visualization with Clustering'
     )
+    
     # Customize axis labels, title, and colorbar
     fig.update_layout(
         xaxis_title='t-SNE Dimension 1',
