@@ -26,7 +26,7 @@ There are two ways to execute the remainder of this project:
 2. Deploy your own Streamlit App using our code
 
 The easiest by far is Option 1, but Option 2 offers more control over the process.
-    Additionally, a deployed Streamlit App sometimes crashes, and an admin is required to restart it. 
+    Additionally, a deployed Streamlit App occassionally crashes, and an admin is required to restart it. 
     If that occurs, option 2 will ensure a reliable way to execute the project
 
 
@@ -41,8 +41,8 @@ The easiest by far is Option 1, but Option 2 offers more control over the proces
     Wait for app to finish Startup process
 
 3. To get started, the app requires a CSV data file to begin. 
-    This file is our sentence data, processed through Sentence-BERT
-    The file to upload is located in the /data directory, called normalized_output_file.csv
+    This file is our sentence data, processed through the sentence-transformer model
+    The file to upload is located in the /data directory, called "normalized_output_file.csv"
 
     Select "Browse files" on the left-hand sidebar under "Upload your CSV file"
         Navigate to "normalized_output_file.csv", select it, and wait for the file to upload.
@@ -86,7 +86,7 @@ To create a new Streamlit App:
 
 Modifications required to Streamlit App files:
     - Copy requirements.txt from /streamlit directory over to new deployment
-    - Copy version2.py from /streamlit directory over to new deployment
+    - Copy CONTENTS of version2.py from /streamlit directory over to the new deployment's main program file.
     - Install / resolve any dependency issues
         When editing through CodeSpaces, access the terminal window and run the following:
             pip install matplotlib
