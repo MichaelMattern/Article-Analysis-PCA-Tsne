@@ -1,3 +1,4 @@
+# Import ML packages
 import streamlit as st
 import pandas as pd
 import numpy as np
@@ -7,7 +8,6 @@ from sklearn.impute import SimpleImputer
 from sklearn.metrics import silhouette_score
 from sklearn.cluster import KMeans
 import base64
-#from openTSNE import TSNE
 from sklearn.manifold import TSNE
 import plotly.express as px
 
@@ -84,16 +84,6 @@ if uploaded_file is not None:
     principal_components = compute_pca(x, pca_dimensions)
 
     @st.cache_data
-#    def compute_tsne(data, perplexity):
-#        tsne = TSNE(
-#            n_components=2,
-#            perplexity=perplexity,
-#            n_jobs=-1,  # Utilize all available CPU cores
-#            random_state=42
-#        )
-#        embedding = tsne.fit(data)
-#        return np.array(embedding)  # Convert embedding to NumPy array
-
     def compute_tsne(data, perplexity):
         tsne = TSNE(n_components=2, perplexity=perplexity, random_state=42)
         return tsne.fit_transform(data)
